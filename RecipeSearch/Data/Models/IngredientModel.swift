@@ -10,7 +10,7 @@ import Foundation
 struct IngredientModel: Decodable {
     let id: Int
     let aisle: String
-    let image: String
+    let image: String?
     let consistency: String
     let name: String
     let nameClean: String

@@ -8,7 +8,6 @@
 import Foundation
 
 struct NutritionModel: Decodable {
-    let recipesUsed: Int
     let calories: NutrientModel
     let fat: NutrientModel
     let protein: NutrientModel
@@ -18,11 +17,4 @@ struct NutritionModel: Decodable {
 struct NutrientModel: Decodable {
     let value: Double
     let unit: String
-    let confidenceRange95Percent: ConfidenceRangeModel
-    let standardDeviation: Double
-}
-
-struct ConfidenceRangeModel: Decodable {
-    let min: Double
-    let max: Double
 }

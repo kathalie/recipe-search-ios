@@ -8,80 +8,92 @@
 import SwiftUI
 
 class RecipeListViewModel: ObservableObject {
-    @Published var searchQuery = ""
-    @Published var recipes = [RecipeModel]()
-    @Published var errorMessage: String? = nil
+    @Published var recipes: [RecipeModel] = []
+    @Published var errorMessage: String?
     @Published var isLoading = false
-    
-    private let recipeProvider: RecipeProvider
-    
-    init(recipeProvider: RecipeProvider = URLSessionRecipeProvider()) {
-        self.recipeProvider = recipeProvider
-    }
+    private let recipeProvider: RecipeProvider = URLSessionRecipeProvider()
+    private var offset = 0
     
     @MainActor
-    func performSearch() async {
-        guard !searchQuery.isEmpty else { return }
+    func searchRecipes(searchQuery: String) async {
+        offset = 0
         
         isLoading = true
         errorMessage = nil
         do {
-//            recipes = try await recipeProvider.searchRecipes(by: searchQuery)
-//            print(recipes)
-            
-            let recipe = try await recipeProvider.getRecipeInformation(by: 658579)
-//            print(recipe)
-            
-//            let result = try await recipeProvider.guessNutrition(by: searchQuery)
-//            print(result)
-            
-            let ingredientList = recipe.extendedIngredients.map{$0.name}.joined(separator: "\n")
-            
-            let classifier = ClassifyCuisineInfo(ingredientList: ingredientList, title: recipe.title)
-            let result = try await recipeProvider.classifyCuisine(by: classifier)
-            print(result)
+            recipes = try await recipeProvider.searchRecipes(by: searchQuery, offset: offset)
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = (error as? RapidApiError)?.message ?? "Something went wrong"
+        }
+        isLoading = false
+    }
+    
+    @MainActor
+    func loadMore(searchQuery: String) async {
+        offset += 10
+        
+        isLoading = true
+        errorMessage = nil
+        do {
+            let newRecipes = try await recipeProvider.searchRecipes(by: searchQuery, offset: offset)
+            recipes.append(contentsOf: newRecipes)
+        } catch {
+            errorMessage = (error as? RapidApiError)?.message ?? "Something went wrong"
         }
         isLoading = false
     }
 }
 
 struct RecipeListView: View {
-    @StateObject private var viewModel = RecipeListViewModel()
-
+    @StateObject private var viewModel: RecipeListViewModel
+    @State private var searchQuery = ""
+    
+    init() {
+        _viewModel = StateObject(wrappedValue: RecipeListViewModel())
+    }
+    
     var body: some View {
-        VStack {
-            TextField("Enter search query", text: $viewModel.searchQuery)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+        NavigationView {
+            VStack {
+                HStack {
+                    TextField("Enter search query", text: $searchQuery)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.leading)
+                        .frame(maxWidth: .infinity)
+                    
+                    Button("Search") {
+                        Task {
+                            await viewModel.searchRecipes(searchQuery: searchQuery)
+                        }
+                    }
+                    .padding(.trailing)
+                }
                 .padding()
-
-            Button("Search") {
-                Task {
-                    await viewModel.performSearch()
+                .frame(maxWidth: .infinity)
+                
+                if viewModel.isLoading {
+                    ProgressView("Loading...")
+                } else if let errorMessage = viewModel.errorMessage {
+                    Text("Error: \(errorMessage)").foregroundColor(.red)
+                } else {
+                    List(viewModel.recipes) { recipe in
+                        NavigationLink(destination: RecipeDetailView(recipeId: recipe.id)) {
+                            RecipeView(recipe: recipe)
+                        }
+                    }
+                    
+                    if !viewModel.isLoading && viewModel.recipes.count % 10 == 0 {
+                        Button("Load more") {
+                            Task {
+                                await viewModel.loadMore(searchQuery: searchQuery)
+                            }
+                        }
+                        .padding()
+                    }
                 }
             }
-            .padding()
-
-//            if viewModel.isLoading {
-//                ProgressView("Loading...")
-//            } else if let errorMessage = viewModel.errorMessage {
-//                Text("Error: \(errorMessage)")
-//                    .foregroundColor(.red)
-//            } else {
-//                List(viewModel.recipes) { recipe in
-//                    VStack(alignment: .leading) {
-//                        Text(recipe.title)
-//                            .font(.headline)
-//                        if let description = recipe.description {
-//                            Text(description)
-//                                .font(.subheadline)
-//                        }
-//                    }
-//                }
-//            }
+            .navigationTitle("Recipe Search")
         }
-        .padding()
     }
 }
 

@@ -21,6 +21,10 @@
 		8CADB0562CED8F9A005F21D3 /* ProvidersConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CADB0552CED8F9A005F21D3 /* ProvidersConfig.swift */; };
 		8CADB0582CED90A6005F21D3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CADB0572CED90A6005F21D3 /* Errors.swift */; };
 		8CADB05B2CED9E29005F21D3 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CADB05A2CED9E29005F21D3 /* RecipeListView.swift */; };
+		8CADB05D2CEDB202005F21D3 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CADB05C2CEDB202005F21D3 /* RecipeDetailView.swift */; };
+		8CADB05F2CEDB6AD005F21D3 /* NutrientSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CADB05E2CEDB6AD005F21D3 /* NutrientSection.swift */; };
+		8CADB0612CEDB705005F21D3 /* NutritionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CADB0602CEDB705005F21D3 /* NutritionView.swift */; };
+		8CADB0632CEDB99C005F21D3 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CADB0622CEDB99C005F21D3 /* RecipeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +43,10 @@
 		8CADB0552CED8F9A005F21D3 /* ProvidersConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersConfig.swift; sourceTree = "<group>"; };
 		8CADB0572CED90A6005F21D3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		8CADB05A2CED9E29005F21D3 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		8CADB05C2CEDB202005F21D3 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		8CADB05E2CEDB6AD005F21D3 /* NutrientSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientSection.swift; sourceTree = "<group>"; };
+		8CADB0602CEDB705005F21D3 /* NutritionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionView.swift; sourceTree = "<group>"; };
+		8CADB0622CEDB99C005F21D3 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +133,10 @@
 			isa = PBXGroup;
 			children = (
 				8CADB05A2CED9E29005F21D3 /* RecipeListView.swift */,
+				8CADB0622CEDB99C005F21D3 /* RecipeView.swift */,
+				8CADB05C2CEDB202005F21D3 /* RecipeDetailView.swift */,
+				8CADB0602CEDB705005F21D3 /* NutritionView.swift */,
+				8CADB05E2CEDB6AD005F21D3 /* NutrientSection.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -207,8 +219,12 @@
 				8CADB0362CED82C5005F21D3 /* RecipeSearchApp.swift in Sources */,
 				8CADB0472CED8389005F21D3 /* AlamofireRecipeProvider.swift in Sources */,
 				8CADB0492CED839A005F21D3 /* URLSessionRecipeProvider.swift in Sources */,
+				8CADB05F2CEDB6AD005F21D3 /* NutrientSection.swift in Sources */,
+				8CADB0612CEDB705005F21D3 /* NutritionView.swift in Sources */,
 				8CADB0582CED90A6005F21D3 /* Errors.swift in Sources */,
+				8CADB0632CEDB99C005F21D3 /* RecipeView.swift in Sources */,
 				8CADB0562CED8F9A005F21D3 /* ProvidersConfig.swift in Sources */,
+				8CADB05D2CEDB202005F21D3 /* RecipeDetailView.swift in Sources */,
 				8CADB04B2CED8536005F21D3 /* RecipeModel.swift in Sources */,
 				8CADB0512CED8956005F21D3 /* NutritionModel.swift in Sources */,
 			);
