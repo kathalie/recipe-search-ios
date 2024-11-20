@@ -11,7 +11,8 @@ class RecipeListViewModel: ObservableObject {
     @Published var recipes: [RecipeModel] = []
     @Published var errorMessage: String?
     @Published var isLoading = false
-    private let recipeProvider: RecipeProvider = URLSessionRecipeProvider()
+//    private let recipeProvider: RecipeProvider = URLSessionRecipeProvider()
+    private let recipeProvider: RecipeProvider = AlamofireRecipeProvider()
     private var offset = 0
     
     @MainActor

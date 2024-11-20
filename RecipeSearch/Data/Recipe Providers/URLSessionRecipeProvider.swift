@@ -150,6 +150,4 @@ struct URLSessionRecipeProvider: RecipeProvider {
             throw errorClassifyingCuisine
         }
     }
-    
-    
 }
