@@ -10,3 +10,8 @@ import Foundation
 struct Cuisine: Decodable {
     let cuisines: [String]
 }
+
+struct ClassifyCuisineInfo: Encodable {
+    let ingredientList: String
+    let title: String
+}

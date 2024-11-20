@@ -8,7 +8,7 @@
 import Foundation
 
 struct IngredientModel: Decodable {
-    let id: UUID
+    let id: Int
     let aisle: String
     let image: String
     let consistency: String
@@ -16,7 +16,7 @@ struct IngredientModel: Decodable {
     let nameClean: String
     let original: String
     let originalName: String
-    let amount: Int
+    let amount: Double
     let unit: String
     let measures: MeasuresModel
 }
@@ -27,7 +27,7 @@ struct MeasuresModel: Decodable {
 }
 
 struct MeasureModel: Decodable {
-    let amount: Int
+    let amount: Double
     let unitShort: String
     let unitLong: String
 }
