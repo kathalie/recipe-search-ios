@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RecipeProvider {
-    func searchRecipes(by searchQuery: String) async throws -> [RecipeModel]
+    func searchRecipes(by searchQuery: String, offset: Int) async throws -> [RecipeModel]
     func getRecipeInformation(by id: Int) async throws -> RecipeInformationModel
     func guessNutrition(by dishName: String) async throws -> NutritionModel
     func classifyCuisine(by classifyCuisineInfo: ClassifyCuisineInfo) async throws -> Cuisine

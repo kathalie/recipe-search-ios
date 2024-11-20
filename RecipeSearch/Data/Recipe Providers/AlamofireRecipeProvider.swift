@@ -10,7 +10,7 @@ import Foundation
 //struct AlamofireRecipeProvider: RecipeProvider {
 //    let providersConfig: ProvidersConfig = ProvidersConfig()
 //    
-//    func searchRecipes(by searchQuery: String) async throws -> [RecipeModel] {
+//    func searchRecipes(by searchQuery: String, offset: Int) async throws -> [RecipeModel] {
 //        <#code#>
 //    }
 //    

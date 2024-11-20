@@ -10,11 +10,14 @@ import Foundation
 struct URLSessionRecipeProvider: RecipeProvider {
     let providersConfig: ProvidersConfig = ProvidersConfig()
     
-    func searchRecipes(by searchQuery: String) async throws -> [RecipeModel] {
+    func searchRecipes(by searchQuery: String, offset: Int) async throws -> [RecipeModel] {
         let url = providersConfig.baseUrl
             .appending(path: "recipes")
             .appending(path: "complexSearch")
-            .appending(queryItems: [URLQueryItem(name: "query", value: searchQuery)])
+            .appending(queryItems: [
+                URLQueryItem(name: "query", value: searchQuery),
+                URLQueryItem(name: "offset", value: "\(offset)")
+            ])
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

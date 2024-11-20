@@ -9,6 +9,9 @@ import Foundation
 
 struct RecipeResultModel: Decodable {
     let results: [RecipeModel]
+    let offset: Int
+    let number: Int
+    let totalResults: Int
 }
 
 struct RecipeModel: Identifiable, Decodable {
