@@ -24,7 +24,5 @@ struct NutrientSection: View {
             }
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10)
-        )
     }
 }

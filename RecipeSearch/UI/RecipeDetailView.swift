@@ -14,8 +14,8 @@ class RecipeDetailViewModel: ObservableObject {
     @Published var showErrorAlert = false
     @Published var error = ""
     
-//    private let recipeProvider: RecipeProvider = URLSessionRecipeProvider()
-    private let recipeProvider: RecipeProvider = AlamofireRecipeProvider()
+    private let recipeProvider: RecipeProvider = URLSessionRecipeProvider()
+//    private let recipeProvider: RecipeProvider = AlamofireRecipeProvider()
     let recipeId: Int
     
     init(recipeId: Int) {
